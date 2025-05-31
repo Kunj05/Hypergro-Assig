@@ -51,6 +51,9 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
   res.status(500).json({ message: 'Something went wrong!', error: err.message });
 };
 
+app.get('/',(req,res)=>{
+  res.send("The Server is running great! Check '/api/properties' to get all  properties");
+})
 
 /** Auth Routes */
 app.post('/api/register', async (req: Request, res: Response):Promise<void> => {
