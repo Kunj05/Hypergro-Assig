@@ -52,7 +52,7 @@ const errorHandler: ErrorRequestHandler = (err, req, res, next) => {
 };
 
 app.get('/',(req,res)=>{
-  res.send("The Server is running great! Check '/api/properties' to get all  properties");
+  res.send("Hey Hi👋👋👋👋  Server is running great!  Check '/api/properties' to get all properties");
 })
 
 /** Auth Routes */
