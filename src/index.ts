@@ -55,6 +55,7 @@ app.get('/',(req,res)=>{
   res.send("Hey Hi👋👋👋👋  Server is running great!  Check '/api/properties' to get all properties");
 })
 
+
 /** Auth Routes */
 app.post('/api/register', async (req: Request, res: Response):Promise<void> => {
   const { email, password } = req.body;
@@ -91,6 +92,7 @@ app.post('/api/login', async (req: Request, res: Response):Promise<void> => {
     res.status(500).json({ message: 'Login failed', error: err });
   }
 });
+
 
 /** Property Routes */
 app.post('/api/properties', protect, async (req: Request, res: Response):Promise<void> => {
@@ -176,7 +178,9 @@ app.delete('/api/properties/:id', protect, async (req: Request, res: Response):P
   }
 });
 
-app.get('/api/properties', async (req: Request, res: Response): Promise<void> => {
+
+/** Advance Filteration Routes */
+app.get('/api/filter', async (req: Request, res: Response): Promise<void> => {
   try {
     const filters: any = {};
   console.log('Query parameters:', req.query);
@@ -238,6 +242,7 @@ app.get('/api/properties', async (req: Request, res: Response): Promise<void> =>
 });
 
 
+/** Favorite Routes */
 app.post('/api/favorites/:propertyId', protect, async (req: Request, res: Response):Promise<void> => {
   try {
     if (!req.user || !req.user.id) {
@@ -285,7 +290,6 @@ app.get('/api/favorites', protect, async (req: Request, res: Response):Promise<v
   }
 });
 
-
 app.delete('/api/favorites/:propertyId', protect, async (req: Request, res: Response):Promise<void> => {
   try {
     if (!req.user || !req.user.id) {
@@ -312,6 +316,8 @@ app.delete('/api/favorites/:propertyId', protect, async (req: Request, res: Resp
 });
 
 
+
+/** Recommendation Routes */
 app.get('/api/users/search', protect, async (req: Request, res: Response):Promise<void> => {
   try {
     const { email } = req.query;
@@ -416,6 +422,8 @@ app.get('/api/recommendations', protect, async (req: Request, res: Response):Pro
     });
   }
 });
+
+
 
 /** Start Server */
 app.use(errorHandler);
